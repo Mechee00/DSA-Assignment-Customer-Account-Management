@@ -1,0 +1,18 @@
+{
+	"html.format.wrapLineLength": 0,
+	"editor.wordWrapColumn": 1,
+	"diffEditor.wordWrap": "off",
+	"maven.executable.preferMavenWrapper": false,
+	"java.import.gradle.wrapper.enabled": false,
+	"editor.wrappingIndent": "deepIndent",
+	"html.format.wrapAttributes": "aligned-multiple",
+	"java.import.gradle.enabled": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"java.format.enabled": true,
+	"java.format.settings.profile": "",
+	"java.format.settings.url": ".vscode/java-formatter.xml",
+	"[java]": {
+		"editor.insertSpaces": false,
+		"editor.detectIndentation": false
+	}
+}
