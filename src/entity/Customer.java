@@ -117,15 +117,4 @@ public class Customer {
         this.address = null;
     }
 
-    // UI Display
-
-    public static void displayMenu_UpdateUserAccount() {
-
-        System.out.println("Choose the item to enter:");
-    }
-
-    public static void displayMenu_DeleteUserAccount() {
-
-    }
-
 }
