@@ -31,7 +31,6 @@ public class TestDriver {
 	}
 
 	public static void init(ArrayList<Customer> array) {
-
 		array.add(new Customer("bgraal0", "PXC7lP", "bgraal0@bizjournals.com", "Belicia Graal", 'M', 37, "+62 612 459 4084", new Address("0", "Onsgard Trail", "Sacramento", "California", 95833)));
 		array.add(new Customer("sheintzsch1", "HUTWyYW", "sheintzsch1@biglobe.ne.jp", "Schuyler Heintzsch", 'M', 21, "+358 808 412 8474", new Address("1094", "Pankratz Avenue", "Aurora", "Illinois", 60505)));
 		array.add(new Customer("sjozsika2", "KNmpfeHNV", "sjozsika2@ycombinator.com", "Stu Jozsika", 'M', 26, "+62 308 935 8378", new Address("06", "Morningstar Hill", "Roanoke", "Virginia", 24034)));
@@ -116,7 +115,8 @@ public class TestDriver {
 			} while (true);
 			break;
 		case SUB_UPDATEUSER:
-			Boolean exit = false;
+			boolean exit = false;
+			boolean inRange = true;
 			do {
 				do {
 					out.echoln("================ { List of Account } ================");
@@ -126,8 +126,17 @@ public class TestDriver {
 					}
 					out.echo("Type the {Number} to select the account for edit; Type {QQQ} to exit:");
 					in.readIn();
-				} while (Integer.parseInt(in.getUserInput()) > custAcc.getNumberOfEntries() && Integer.parseInt(in.getUserInput()) <= 0);
-				exit = in.isMatchRegEx("QQQ");
+					exit = in.isMatchRegEx("QQQ");
+					if (in.isMatchRegEx("[0-9]*")) {
+						inRange = (Integer.parseInt(in.getUserInput()) < custAcc.getNumberOfEntries()) && (Integer.parseInt(in.getUserInput()) >= 0);
+					}
+					if (inRange | exit) {
+						break;
+					}
+				} while (true);
+				if (exit) {
+					break;
+				}
 				int userID = Integer.parseInt(in.getUserInput());
 				// Customer selectedAcc = new Customer();
 				do {
@@ -149,64 +158,72 @@ public class TestDriver {
 						out.echo("Select the number to change; Type {QQQ} to exit: ");
 						in.readIn();
 						exit = in.isMatchRegEx("QQQ");
-					} while ((in.isMatchRegEx("[0-9]")) && (Integer.parseInt(in.getUserInput()) >= 1) && (Integer.parseInt(in.getUserInput()) <= 12));
-
-					switch (in.getUserInput()) {
-					case "1":
-						out.echo("Enter New User Name: ");
-						custAcc.getItemOf(userID).setUserName(in.readIn());
+						if (in.isMatchRegEx("[0-9]*")) {
+							inRange = (Integer.parseInt(in.getUserInput()) >= 1) && (Integer.parseInt(in.getUserInput()) <= 12);
+						}
+						if (inRange | exit) {
+							break;
+						}
+					} while (true);
+					if (exit) {
 						break;
-					case "2":
-						out.echo("Enter New User Password: ");
-						custAcc.getItemOf(userID).setPassword(in.readIn());
-						break;
-					case "3":
-						out.echo("Enter New User Email: ");
-						custAcc.getItemOf(userID).setEmail(in.readIn());
-						break;
-					case "4":
-						out.echo("Enter New User Full Name: ");
-						custAcc.getItemOf(userID).setName(in.readIn());
-						break;
-					case "5":
-						out.echo("Enter New User Gender (F/M): ");
-						custAcc.getItemOf(userID).setGender(in.readIn().charAt(0));
-						break;
-					case "6":
-						out.echo("Enter New User Age: ");
-						custAcc.getItemOf(userID).setAge(Integer.parseInt(in.readIn()));
-						break;
-					case "7":
-						out.echo("Enter New User Phone Number: ");
-						custAcc.getItemOf(userID).setPhoneNumber(in.readIn());
-						break;
-					case "8":
-						out.echo("Enter New User Address Line 1: ");
-						custAcc.getItemOf(userID).getAddress().setAddrLine1(in.readIn());
-						break;
-					case "9":
-						out.echo("Enter New User Address Line 2: ");
-						custAcc.getItemOf(userID).getAddress().setAddrLine2(in.readIn());
-						break;
-					case "10":
-						out.echo("Enter New User City: ");
-						custAcc.getItemOf(userID).getAddress().setCity(in.readIn());
-						break;
-					case "11":
-						out.echo("Enter New User State: ");
-						custAcc.getItemOf(userID).getAddress().setState(in.readIn());
-						break;
-					case "12":
-						out.echo("Enter New User Zip Code: ");
-						custAcc.getItemOf(userID).getAddress().setZipCode(Integer.parseInt(in.readIn()));
-						break;
-					default:
-						break;
+					} else {
+						switch (in.getUserInput()) {
+						case "1":
+							out.echo("Enter New User Name: ");
+							custAcc.getItemOf(userID).setUserName(in.readIn());
+							break;
+						case "2":
+							out.echo("Enter New User Password: ");
+							custAcc.getItemOf(userID).setPassword(in.readIn());
+							break;
+						case "3":
+							out.echo("Enter New User Email: ");
+							custAcc.getItemOf(userID).setEmail(in.readIn());
+							break;
+						case "4":
+							out.echo("Enter New User Full Name: ");
+							custAcc.getItemOf(userID).setName(in.readIn());
+							break;
+						case "5":
+							out.echo("Enter New User Gender (F/M): ");
+							custAcc.getItemOf(userID).setGender(in.readIn().charAt(0));
+							break;
+						case "6":
+							out.echo("Enter New User Age: ");
+							custAcc.getItemOf(userID).setAge(Integer.parseInt(in.readIn()));
+							break;
+						case "7":
+							out.echo("Enter New User Phone Number: ");
+							custAcc.getItemOf(userID).setPhoneNumber(in.readIn());
+							break;
+						case "8":
+							out.echo("Enter New User Address Line 1: ");
+							custAcc.getItemOf(userID).getAddress().setAddrLine1(in.readIn());
+							break;
+						case "9":
+							out.echo("Enter New User Address Line 2: ");
+							custAcc.getItemOf(userID).getAddress().setAddrLine2(in.readIn());
+							break;
+						case "10":
+							out.echo("Enter New User City: ");
+							custAcc.getItemOf(userID).getAddress().setCity(in.readIn());
+							break;
+						case "11":
+							out.echo("Enter New User State: ");
+							custAcc.getItemOf(userID).getAddress().setState(in.readIn());
+							break;
+						case "12":
+							out.echo("Enter New User Zip Code: ");
+							custAcc.getItemOf(userID).getAddress().setZipCode(Integer.parseInt(in.readIn()));
+							break;
+						default:
+							break;
+						}
 					}
-				} while (!exit);
-			} while (!exit);
+				} while (true);
+			} while (true);
 			break;
-
 		case SUB_DELETEUSER:
 			do {
 				out.echoln("================ { List of Account } ================");
