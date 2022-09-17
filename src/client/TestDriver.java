@@ -7,7 +7,7 @@ import utility.*;
 public class TestDriver {
 	static Input in = new Input();
 	static Output out = new Output();
-	static ArrayList<Customer> custAcc = new ArrayList<>();
+	static ListInterface<Customer> custAcc = new ArrayList<>();
 
 	public static void main(String[] args) {
 		init(custAcc); // Initialize the program with some preset data and fill the list with 20
@@ -30,7 +30,7 @@ public class TestDriver {
 		} while (true);
 	}
 
-	public static void init(ArrayList<Customer> array) {
+	public static void init(ListInterface<Customer> array) {
 		array.add(new Customer("bgraal0", "PXC7lP", "bgraal0@bizjournals.com", "Belicia Graal", 'M', 37, "+62 612 459 4084", new Address("0", "Onsgard Trail", "Sacramento", "California", 95833)));
 		array.add(new Customer("sheintzsch1", "HUTWyYW", "sheintzsch1@biglobe.ne.jp", "Schuyler Heintzsch", 'M', 21, "+358 808 412 8474", new Address("1094", "Pankratz Avenue", "Aurora", "Illinois", 60505)));
 		array.add(new Customer("sjozsika2", "KNmpfeHNV", "sjozsika2@ycombinator.com", "Stu Jozsika", 'M', 26, "+62 308 935 8378", new Address("06", "Morningstar Hill", "Roanoke", "Virginia", 24034)));

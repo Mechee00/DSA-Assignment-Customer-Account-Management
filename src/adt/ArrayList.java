@@ -58,7 +58,10 @@ public class ArrayList<T> implements ListInterface<T> {
 
 	@Override
 	public boolean contains(T item) {
-		return getPositionOf(item) != -1;
+		if (!isEmpty()) {
+			return getPositionOf(item) != -1;
+		}
+		return false;
 	}
 
 	@Override
